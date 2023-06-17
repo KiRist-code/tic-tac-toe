@@ -4,10 +4,6 @@
 #include<string.h>
 #include<stdlib.h>
 
-struct Board* makeNewBoard(){
-    struct Board* board = (struct Board*)calloc(0,sizeof(struct Board));
-}
-
 struct Game* makeNewGame(){
     //initialize Game Struct
     struct Game* game = (struct Game*)malloc(sizeof(struct Game));

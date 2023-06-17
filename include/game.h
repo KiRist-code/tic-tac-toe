@@ -18,7 +18,6 @@ struct Game{
     int winner;
 };
 
-struct Board *makeNewBoard();
 struct Game *makeNewGame();
 
 int checkBoard(struct Board* board,int player_id);
