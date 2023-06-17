@@ -95,7 +95,8 @@ void pvp(){
     printf("Starting the game. . .\n\n");
 
     int turn = 0;
-    int place = 0;
+    int placeX = 0;
+    int placeY = 0;
 
     while(1){
         turn++;
@@ -104,27 +105,39 @@ void pvp(){
         printBoard(game->board.map);
         if(turn % 2 == 1){ //player 1
             printf("It's Player1's turn\n");
-            printf("Place your checker(1~9): \n");
-            scanf("%d", &place);
+            printf("Place your checker(x:0~2 y:0~2)(ex: 0 2): \n");
+            scanf("%d %d", &placeX, &placeY);
 
-            game->board.map[(place-1)/3][(place-1)%3] = 1;
+            if(placeX >= 0 && placeX < 3 && placeY >= 0 && placeY < 3){
+                game->board.map[placeX][placeY] = 1;
 
-            if(checkBoard(game->board.map, 1) == 1){
-                printf("Player1 win!\n\n");
-                fileWrite(game->player1, game->player2, 1);
-                return;
+                if(checkBoard(game->board.map, 1) == 1){
+                    printf("Player1 win!\n\n");
+                    fileWrite(game->player1, game->player2, 1);
+                    return;
+                }
+            }
+            else{
+                printf("Input Again");
+                turn--;
             }
         } else { //player 2
             printf("It's Player2's turn\n");
-            printf("Place your checker(1~9): \n");
-            scanf("%d", &place);
+            printf("Place your checker(x:0~2 y:0~2)(ex: 0 2): \n");
+            scanf("%d %d", &placeX, &placeY);
 
-            game->board.map[(place-1)/3][(place-1)%3] = 2;
+            if(placeX >= 0 && placeX < 3 && placeY >= 0 && placeY < 3){
+                game->board.map[placeX][placeY] = 2;
 
-            if(checkBoard(game->board.map, 2) == 1){
-                printf("Player2 win!\n\n");
-                fileWrite(game->player1, game->player2, 2);
-                return;
+                if(checkBoard(game->board.map, 2) == 1){
+                    printf("Player2 win!\n\n");
+                    fileWrite(game->player1, game->player2, 2);
+                    return;
+                }
+            }
+            else{
+                printf("Input Again");
+                turn--;
             }
         }
 
